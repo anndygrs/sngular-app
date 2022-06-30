@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sngular App</title>
+</head>
+
+<body>
+    <div>
+        <p>Calidad del Aire</p>
+    </div>
+
+    <div>
+        <table id="info-table">
+            <tr>
+                <td>Nombre</td>
+                <td>Estado</td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        const getData = () => {
+            fetch('https://api.datos.gob.mx/v1/calidadAire')
+                .then(response => response.json())
+                .then(data => showData(data['results']));
+        }
+
+        const showData = (data) => {
+            var station;                
+            var table = document.getElementById('info-table');
+            for (var a = 1 ; a < data.length ; a++) {
+                station = data[a]['stations'][0];
+                var name = station['name'];
+                var state = station['source_id'];
+                console.log(station);
+            }
+        }
+
+        getData();
+    </script>
+</body>
+
+</html>
