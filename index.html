@@ -15,7 +15,9 @@
             flex-direction: column;
         }
 
-        table, td, th {
+        table,
+        td,
+        th {
             border: 1px solid #000;
         }
 
@@ -75,10 +77,21 @@
                     newRow.appendChild(newState);
                     newValue.textContent = imecaValue;
                     newRow.appendChild(newValue);
-                    newHour.textContent = hour;
+                    newHour.textContent = formatDate(hour);
                     newRow.appendChild(newHour);
                     table.appendChild(newRow);
                 }
+            }
+        }
+
+        const formatDate = (date) => {
+            var longDate = Date(date);
+            var index = longDate.indexOf('GMT');
+            if (index != -1) {
+                var newDate = longDate.substring(0, index - 1);
+                return newDate;
+            } else {
+                return longDate;
             }
         }
 
